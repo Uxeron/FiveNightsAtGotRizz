@@ -14,6 +14,8 @@ extends Node
 
 var main_viewport_texture: ViewportTexture
 
+var camera_switch_running: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	main_viewport_texture = viewport_main_texture_rect.texture
@@ -22,6 +24,13 @@ func _ready():
 
 
 func run_camera_switch(was_good: bool):
+	if camera_switch_running:
+		return
+	
+	camera_switch_running = true
+	button_good.disabled = true
+	button_bad.disabled = true
+	
 	joystick_controller.is_active = true
 	cutting_label_container.visible = true
 	cutting_label.text = cutting_label.text.substr(0, cutting_label.text.length() - 1) + "3"
@@ -42,4 +51,8 @@ func run_camera_switch(was_good: bool):
 	await(get_tree().create_timer(5).timeout)
 	joystick_controller.is_active = true
 	main_viewport_texture.viewport_path = viewport_scene
+	
+	camera_switch_running = false
+	button_good.disabled = false
+	button_bad.disabled = false
 	

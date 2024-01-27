@@ -327,6 +327,7 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_1fahk")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_hmaep")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hmaep")
 text = "Laugh"
 
 [node name="JoystickPanel" type="Panel" parent="PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("viewport_crowd_full", "viewport_crowd", "viewport_sprite_crowd", "drag_area", "joystick_sprite")]
@@ -369,4 +370,5 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_1fahk")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_4ytmi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4ytmi")
 text = "Clap"
