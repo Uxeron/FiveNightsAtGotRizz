@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var speed := 700.0
+@export var speed := 75.0
 
 var follow_path := true
 @onready var path_to_follow = get_parent()
