@@ -14,8 +14,6 @@ func _ready():
 func _physics_process(delta):
 	if follow_path:
 		path_to_follow.progress += speed * delta
-	
-	print(path_to_follow.progress)
 
 func get_lost():
 	follow_path = false

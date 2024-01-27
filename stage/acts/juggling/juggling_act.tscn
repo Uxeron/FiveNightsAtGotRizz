@@ -25,8 +25,8 @@ scale = Vector2(2.08594, 1.55469)
 texture = ExtResource("7_p5j07")
 
 [node name="juggler" type="Sprite2D" parent="."]
-position = Vector2(268, 296)
-scale = Vector2(10, 10)
+position = Vector2(135, 114)
+scale = Vector2(4, 4)
 texture = ExtResource("1_l0ob0")
 script = ExtResource("2_ikohb")
 juggler_textures = Array[Texture]([ExtResource("1_l0ob0"), ExtResource("3_kdlgo")])
