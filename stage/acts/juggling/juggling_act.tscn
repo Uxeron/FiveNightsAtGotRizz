@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddgbmkobsytu1"]
+
+[ext_resource type="Texture2D" uid="uid://cv48siu5ewcp2" path="res://stage/acts/juggling/man_juggle_0.png" id="1_l0ob0"]
+[ext_resource type="Script" path="res://stage/acts/juggling/juggling_act.gd" id="1_vnkn6"]
+[ext_resource type="Script" path="res://stage/acts/juggling/juggler.gd" id="2_ikohb"]
+[ext_resource type="Texture2D" uid="uid://j5berc7qi7tl" path="res://stage/acts/juggling/man_juggle_1.png" id="3_kdlgo"]
+[ext_resource type="PackedScene" uid="uid://cxemue27glgo1" path="res://stage/acts/juggling/juggling_ball.tscn" id="5_a5jil"]
+[ext_resource type="Texture2D" uid="uid://3h372gt17230" path="res://stage/acts/juggling/man_juggle_end.png" id="5_daenk"]
+
+[sub_resource type="Curve2D" id="Curve2D_5tany"]
+_data = {
+"points": PackedVector2Array(14.0682, 15.4597, -14.0682, -15.4597, 409.604, 539, 38.6875, 1.78381, -38.6875, -1.78381, 347.497, 501, 7.62026, -7.13524, -7.62026, 7.13524, 286.376, 539, 1.17235, 62.4334, -1.17235, -62.4334, 244.972, 441, -52.7556, 1.18921, 52.7556, -1.18921, 345.526, 341, 1.17235, -47.5683, -1.17235, 47.5683, 438.193, 437, 0, 0, 0, 0, 409.604, 539)
+}
+point_count = 7
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u36c5"]
+
+[node name="JugglingAct" type="Node2D"]
+script = ExtResource("1_vnkn6")
+
+[node name="juggler" type="Sprite2D" parent="."]
+position = Vector2(268, 296)
+scale = Vector2(10, 10)
+texture = ExtResource("1_l0ob0")
+script = ExtResource("2_ikohb")
+juggler_textures = Array[Texture]([ExtResource("1_l0ob0"), ExtResource("3_kdlgo")])
+juggler_end_texture = ExtResource("5_daenk")
+juggling_ball = ExtResource("5_a5jil")
+
+[node name="Path2D" type="Path2D" parent="juggler"]
+position = Vector2(-35.2495, -55.5)
+scale = Vector2(0.101438, 0.1)
+curve = SubResource("Curve2D_5tany")
+
+[node name="ground" type="StaticBody2D" parent="."]
+position = Vector2(-148.384, 212.293)
+
+[node name="collision" type="CollisionShape2D" parent="ground"]
+position = Vector2(414.384, 164.707)
+shape = SubResource("WorldBoundaryShape2D_u36c5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

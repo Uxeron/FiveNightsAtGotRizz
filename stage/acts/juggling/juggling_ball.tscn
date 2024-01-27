@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxemue27glgo1"]
+
+[ext_resource type="Script" path="res://stage/acts/juggling/JugglingBall.gd" id="1_hf386"]
+[ext_resource type="Script" path="res://stage/acts/juggling/juggling_ball_body.gd" id="2_xej35"]
+[ext_resource type="Texture2D" uid="uid://c0oi724j036dx" path="res://stage/acts/juggling/juggling_ball.png" id="3_adxb0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucr3u"]
+
+[node name="JugglingBall" type="PathFollow2D"]
+position = Vector2(243, 431)
+rotation = -1.19029
+script = ExtResource("1_hf386")
+
+[node name="JugglingBallBody" type="RigidBody2D" parent="."]
+position = Vector2(-23.5833, -2.41403)
+rotation = 1.19029
+freeze = true
+script = ExtResource("2_xej35")
+
+[node name="JugglingBall" type="Sprite2D" parent="JugglingBallBody"]
+scale = Vector2(10, 10)
+texture = ExtResource("3_adxb0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JugglingBallBody"]
+shape = SubResource("RectangleShape2D_ucr3u")
