@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmqdqj1n4ffr1"]
+[gd_scene load_steps=11 format=3 uid="uid://cmqdqj1n4ffr1"]
 
 [ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="1_16pbv"]
 [ext_resource type="Texture2D" uid="uid://ppvmatolcx38" path="res://stage/stage.png" id="1_kp7kt"]
+[ext_resource type="Script" path="res://stage/acts/trampoline/trampoline_act.gd" id="1_ows42"]
 [ext_resource type="Texture2D" uid="uid://cb7alclya5u5j" path="res://stage/acts/trampoline/trampoline.png" id="2_v0f54"]
 [ext_resource type="Texture2D" uid="uid://dqwkow7ogaq70" path="res://stage/acts/trampoline/man_trampoline_spin.png" id="3_n72n5"]
 [ext_resource type="Script" path="res://stage/acts/trampoline/ManTrampolineSpin.gd" id="5_tm378"]
+[ext_resource type="Texture2D" uid="uid://cmnr60kvci7hu" path="res://stage/acts/trampoline/man_trampoline_finish.png" id="6_t02mw"]
 
 [sub_resource type="Curve2D" id="Curve2D_d5nv1"]
 _data = {
@@ -12,7 +14,13 @@ _data = {
 }
 point_count = 5
 
-[node name="Trampoline" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kor8j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rd0wi"]
+distance = 1.0
+
+[node name="TrampolineAct" type="Node2D"]
+script = ExtResource("1_ows42")
 
 [node name="Stage" type="Sprite2D" parent="."]
 z_index = -10
@@ -44,8 +52,27 @@ position = Vector2(55, 132)
 rotation = -0.984839
 rotates = false
 
-[node name="ManTrampolineSpin" type="Sprite2D" parent="JumpPath/PathFollow2D"]
-rotation = 0.984839
-scale = Vector2(2, 2)
-texture = ExtResource("3_n72n5")
+[node name="RigidBody2D" type="RigidBody2D" parent="JumpPath/PathFollow2D"]
+freeze = true
 script = ExtResource("5_tm378")
+win_texture = ExtResource("6_t02mw")
+
+[node name="ManTrampolineSpin" type="Sprite2D" parent="JumpPath/PathFollow2D/RigidBody2D"]
+rotation = 0.984839
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_n72n5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpPath/PathFollow2D/RigidBody2D"]
+shape = SubResource("CircleShape2D_kor8j")
+
+[node name="ground" type="StaticBody2D" parent="."]
+position = Vector2(129, 176)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
+shape = SubResource("WorldBoundaryShape2D_rd0wi")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
