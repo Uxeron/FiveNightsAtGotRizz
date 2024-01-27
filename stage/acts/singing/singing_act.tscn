@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv620fhfebm6k"]
+[gd_scene load_steps=9 format=3 uid="uid://dv620fhfebm6k"]
 
 [ext_resource type="Script" path="res://stage/acts/singing/singing_act.gd" id="1_q8v72"]
 [ext_resource type="Texture2D" uid="uid://bhvtc8v1s42qy" path="res://stage/acts/singing/man_singing_0.png" id="1_vkkvw"]
+[ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="2_84eqq"]
 [ext_resource type="Script" path="res://stage/acts/singing/Singer.gd" id="2_p8jhk"]
 [ext_resource type="Texture2D" uid="uid://cvlse0vetdvgv" path="res://stage/acts/singing/note.png" id="2_t8g12"]
 [ext_resource type="Texture2D" uid="uid://dosdrbcd3reqp" path="res://stage/acts/singing/note_broken.png" id="4_svlvw"]
@@ -17,8 +18,12 @@ initial_velocity_max = 35.0
 gravity = Vector3(0, 0, 0)
 
 [node name="SingingAct" type="Node2D"]
-scale = Vector2(10, 10)
 script = ExtResource("1_q8v72")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(133.5, 99.5)
+scale = Vector2(2.08594, 1.55469)
+texture = ExtResource("2_84eqq")
 
 [node name="Singer" type="Sprite2D" parent="." node_paths=PackedStringArray("notes_normal", "notes_broken", "notes_amazing")]
 position = Vector2(38, 53)
@@ -37,7 +42,6 @@ local_coords = true
 
 [node name="NotesBroken" type="GPUParticles2D" parent="Singer"]
 position = Vector2(2, -15)
-scale = Vector2(1, 1)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_4qvig")
 texture = ExtResource("4_svlvw")
@@ -46,7 +50,6 @@ local_coords = true
 
 [node name="NotesAmazing" type="GPUParticles2D" parent="Singer"]
 position = Vector2(2, -15)
-scale = Vector2(1, 1)
 emitting = false
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_4qvig")

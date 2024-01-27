@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccwdc6bvs0q7i"]
+[gd_scene load_steps=25 format=3 uid="uid://ccwdc6bvs0q7i"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7a8x5"]
 [ext_resource type="Shader" path="res://colorize.gdshader" id="1_m15ij"]
 [ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="2_r260o"]
 [ext_resource type="FontFile" uid="uid://c77ts4ssd7kr4" path="res://LcdSolid-VPzB.ttf" id="3_1fahk"]
+[ext_resource type="PackedScene" uid="uid://dthhca7u4erg8" path="res://stage/stage.tscn" id="5_edkph"]
 [ext_resource type="Script" path="res://Joystick.gd" id="5_l338p"]
 [ext_resource type="Script" path="res://JoystickDragArea.gd" id="6_y1is2"]
 
@@ -225,9 +226,12 @@ size = Vector2i(267, 198)
 render_target_update_mode = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene"]
+visible = false
 material = SubResource("ShaderMaterial_osr2v")
 texture = ExtResource("2_r260o")
 centered = false
+
+[node name="Stage2" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene" instance=ExtResource("5_edkph")]
 
 [node name="LabelCam3" type="Label" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4"]
 layout_mode = 2

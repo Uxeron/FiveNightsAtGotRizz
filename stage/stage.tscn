@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dthhca7u4erg8"]
+[gd_scene load_steps=6 format=3 uid="uid://dthhca7u4erg8"]
 
 [ext_resource type="PackedScene" uid="uid://ddgbmkobsytu1" path="res://stage/acts/juggling/juggling_act.tscn" id="1_jms7e"]
 [ext_resource type="Script" path="res://stage/stage.gd" id="1_vqv2j"]
 [ext_resource type="PackedScene" uid="uid://dv620fhfebm6k" path="res://stage/acts/singing/singing_act.tscn" id="3_7782i"]
+[ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="4_ph0cc"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gj7b3"]
+width = 267
+height = 199
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_vqv2j")
@@ -11,5 +16,15 @@ acts = Array[PackedScene]([ExtResource("1_jms7e"), ExtResource("3_7782i")])
 [node name="Timer" type="Timer" parent="."]
 wait_time = 6.0
 autostart = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(1, 1)
+texture = SubResource("GradientTexture2D_gj7b3")
+centered = false
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(133.5, 99.5)
+scale = Vector2(2.08594, 1.55469)
+texture = ExtResource("4_ph0cc")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
