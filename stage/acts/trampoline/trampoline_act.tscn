@@ -1,3 +1,51 @@
-[gd_scene format=3 uid="uid://cmqdqj1n4ffr1"]
+[gd_scene load_steps=7 format=3 uid="uid://cmqdqj1n4ffr1"]
+
+[ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="1_16pbv"]
+[ext_resource type="Texture2D" uid="uid://ppvmatolcx38" path="res://stage/stage.png" id="1_kp7kt"]
+[ext_resource type="Texture2D" uid="uid://cb7alclya5u5j" path="res://stage/acts/trampoline/trampoline.png" id="2_v0f54"]
+[ext_resource type="Texture2D" uid="uid://dqwkow7ogaq70" path="res://stage/acts/trampoline/man_trampoline_spin.png" id="3_n72n5"]
+[ext_resource type="Script" path="res://stage/acts/trampoline/ManTrampolineSpin.gd" id="5_tm378"]
+
+[sub_resource type="Curve2D" id="Curve2D_d5nv1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 55, 132, -64.2609, -2.52554, 64.2609, 2.52554, 130, 19, 0, 0, 0, 0, 217, 146, 69.0314, 0.280616, -69.0314, -0.280616, 130, 30, 0, 0, 0, 0, 55, 132)
+}
+point_count = 5
 
 [node name="Trampoline" type="Node2D"]
+
+[node name="Stage" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(135, 124)
+texture = ExtResource("1_kp7kt")
+
+[node name="Trampoline" type="Sprite2D" parent="."]
+position = Vector2(53, 141)
+scale = Vector2(2, 2)
+texture = ExtResource("2_v0f54")
+
+[node name="Trampoline2" type="Sprite2D" parent="."]
+position = Vector2(214, 152)
+scale = Vector2(2, 2)
+texture = ExtResource("2_v0f54")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(133.5, 99.5)
+scale = Vector2(2.08594, 1.55469)
+texture = ExtResource("1_16pbv")
+
+[node name="JumpPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_d5nv1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="JumpPath"]
+position = Vector2(55, 132)
+rotation = -0.984839
+rotates = false
+
+[node name="ManTrampolineSpin" type="Sprite2D" parent="JumpPath/PathFollow2D"]
+rotation = 0.984839
+scale = Vector2(2, 2)
+texture = ExtResource("3_n72n5")
+script = ExtResource("5_tm378")
