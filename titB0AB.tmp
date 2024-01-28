@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxpgxng3icnko"]
+
+[ext_resource type="Script" path="res://title_screen.gd" id="1_xaqic"]
+[ext_resource type="FontFile" uid="uid://c77ts4ssd7kr4" path="res://LcdSolid-VPzB.ttf" id="2_xcsce"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xaqic")
+path_to_game_scene = "res://main.tscn"
+
+[node name="Backgound" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 125.0
+offset_right = 1254.0
+offset_bottom = 212.0
+theme_override_fonts/font = ExtResource("2_xcsce")
+theme_override_font_sizes/font_size = 86
+text = "Five nights at
+GOT RIZZ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoginBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 350.0
+offset_right = 716.0
+offset_bottom = 419.0
+theme_override_fonts/font = ExtResource("2_xcsce")
+theme_override_font_sizes/font_size = 60
+text = "Login"
+
+[node name="PlayAsGuestBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 467.0
+offset_right = 899.0
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("2_xcsce")
+theme_override_font_sizes/font_size = 60
+text = "Play as a Guest"
+
+[connection signal="pressed" from="PlayAsGuestBtn" to="." method="_on_play_as_guest_btn_pressed"]

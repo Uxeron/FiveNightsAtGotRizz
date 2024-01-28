@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+SceneLoader="*res://addons/SolanaSDK/Autoload/SceneLoader.tscn"
+SolanaService="*res://addons/SolanaSDK/Autoload/SolanaService.tscn"
 
 [dialogue_manager]
 
@@ -29,6 +31,10 @@ general/balloon_path="res://dialog_balloon/balloon.tscn"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SolanaSDK/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
@@ -61,14 +67,10 @@ camera_down={
 ]
 }
 
-[rendering]
-
-textures/canvas_textures/default_texture_filter=0
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
-
 [internationalization]
 
 locale/translations_pot_files=PackedStringArray("res://dialogues/lore.dialogue")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
