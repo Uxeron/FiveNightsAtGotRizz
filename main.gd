@@ -38,6 +38,8 @@ var last_performance_outcome: PERFORMACE_OUTCOME = PERFORMACE_OUTCOME.NONE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#DialogueManager.show_dialogue_balloon(preload("res://dialogues/lore.dialogue"), "lore_start")
+	
 	main_viewport_texture = viewport_main_texture_rect.texture
 	button_good.pressed.connect(func(): run_camera_switch(true))
 	button_bad.pressed.connect(func(): run_camera_switch(false))
@@ -86,16 +88,21 @@ func run_camera_switch(was_good: bool):
 	
 	# Calculate score
 	var current_score = score.target_score
-	var audience_image: Image = zoomed_audience_sprite.texture.get_image()
+	var audience_image: Image = main_viewport_texture.get_image()
+	
+	var found_pixels: int = 0
 	for y in range(audience_image.get_size().y):
 		for x in range(audience_image.get_size().x):
 			var color: Color = audience_image.get_pixel(x, y)
-			if last_performance_outcome == PERFORMACE_OUTCOME.SUCCESS && color == Color("24B710"):
-				score.target_score += 0.000003
-			if last_performance_outcome == PERFORMACE_OUTCOME.FAIL && color == Color("B52015"):
-				score.target_score += 0.000003
+			if last_performance_outcome == PERFORMACE_OUTCOME.SUCCESS and color == Color("6ABE30"):
+				score.target_score += 0.00003
+				found_pixels += 1
+			if last_performance_outcome == PERFORMACE_OUTCOME.FAIL and color == Color("5B6EE1"):
+				score.target_score += 0.00003
+				found_pixels += 1
 	
-	print("Score change:", score.target_score - current_score)
+	print("Score change: ", score.target_score - current_score)
+	print("Pixels found: ", found_pixels)
 	
 	# Reset
 	await(get_tree().create_timer(3).timeout)

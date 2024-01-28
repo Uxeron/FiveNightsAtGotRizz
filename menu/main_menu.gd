@@ -18,11 +18,14 @@ func _ready():
 	button_login.pressed.connect(func(): SolanaService.wallet.try_login())
 	button_credits.pressed.connect(func(): pass)
 	button_quit.pressed.connect(func(): get_tree().quit())
+	
+	#DialogueManager.show_dialogue_balloon(preload("res://dialogues/lore.dialogue"), "lore_start")
 
 func start_game():
 	game = preload("res://main.tscn").instantiate()
 	game.get_child(1).menu = self
 	add_sibling(game)
+	get_tree().current_scene = game
 	get_parent().remove_child(self)
 
 func confirm_login(login_success:bool) -> void:

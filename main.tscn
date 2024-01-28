@@ -67,7 +67,7 @@ viewport_path = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxCon
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hb3us"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmaep"]
-bg_color = Color(0.6, 0.027451, 0.0470588, 1)
+bg_color = Color(0.356863, 0.431373, 0.882353, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbofy"]
 size = Vector2(38, 38)

@@ -16,4 +16,5 @@ func end_game():
 	await get_tree().create_timer(5.0).timeout
 	get_parent().add_sibling(menu)
 	get_tree().paused = false
+	get_tree().current_scene = menu
 	get_parent().get_parent().remove_child(get_parent())
