@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dthhca7u4erg8"]
+[gd_scene load_steps=8 format=3 uid="uid://dthhca7u4erg8"]
 
 [ext_resource type="PackedScene" uid="uid://ddgbmkobsytu1" path="res://stage/acts/juggling/juggling_act.tscn" id="1_jms7e"]
 [ext_resource type="Script" path="res://stage/stage.gd" id="1_vqv2j"]
 [ext_resource type="PackedScene" uid="uid://dv620fhfebm6k" path="res://stage/acts/singing/singing_act.tscn" id="3_7782i"]
 [ext_resource type="PackedScene" uid="uid://cmqdqj1n4ffr1" path="res://stage/acts/trampoline/trampoline_act.tscn" id="4_d1vnt"]
 [ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="4_ph0cc"]
+[ext_resource type="PackedScene" uid="uid://08wpoaia56e1" path="res://stage/acts/dancing/dancing_act.tscn" id="5_g7om8"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gj7b3"]
 width = 267
@@ -12,7 +13,7 @@ height = 199
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_vqv2j")
-acts = Array[PackedScene]([ExtResource("1_jms7e"), ExtResource("3_7782i"), ExtResource("4_d1vnt")])
+acts = Array[PackedScene]([ExtResource("1_jms7e"), ExtResource("3_7782i"), ExtResource("4_d1vnt"), ExtResource("5_g7om8")])
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 6.0
