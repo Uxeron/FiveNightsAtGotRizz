@@ -3,6 +3,9 @@
 [ext_resource type="FontFile" uid="uid://c77ts4ssd7kr4" path="res://LcdSolid-VPzB.ttf" id="1_2l1hj"]
 [ext_resource type="Script" path="res://menu/main_menu.gd" id="1_y2e81"]
 
+[sub_resource type="Animation" id="Animation_cviik"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_t2wwt"]
 resource_name = "Swinging"
 length = 4.2
@@ -19,9 +22,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.349066, -0.349066, 0.349066]
 }
-
-[sub_resource type="Animation" id="Animation_cviik"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kpayh"]
 _data = {
@@ -109,3 +109,12 @@ libraries = {
 "": SubResource("AnimationLibrary_kpayh")
 }
 autoplay = "Swinging"
+
+[node name="LabelAddress" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0

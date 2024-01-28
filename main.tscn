@@ -383,4 +383,22 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4ytmi")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4ytmi")
 text = "Clap"
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/bold_font = ExtResource("3_1fahk")
+theme_override_font_sizes/bold_font_size = 100
+bbcode_enabled = true
+text = "[center][b][color=red][pulse freq=1.0 color=#300000FF ease=-2.0]You're Fired!"
+fit_content = true
+
 [connection signal="area_entered" from="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer2/SubViewportContainer/SubViewportCrowd/Area2DAudience" to="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer2/SubViewportContainer/SubViewportCrowd/Area2DAudience" method="_on_area_entered"]
