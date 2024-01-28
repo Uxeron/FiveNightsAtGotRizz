@@ -18,6 +18,12 @@ extends Node
 
 @export var main_screen_label: Label
 
+@export var score: Score
+
+@export var audience_area: Area2D
+
+@export var zoomed_audience_sprite: Sprite2D
+
 var main_viewport_texture: ViewportTexture
 
 var camera_switch_running: bool = false
@@ -58,9 +64,9 @@ func run_camera_switch(was_good: bool):
 	stage.freeze_act()
 	
 	if was_good and last_performance_outcome == PERFORMACE_OUTCOME.SUCCESS:
-		audience.set_people_state(AudiencePerson.STATE.CLAPPING, 0.3)
+		audience.set_people_state(AudiencePerson.STATE.CLAPPING, 0.2)
 	if not was_good and last_performance_outcome == PERFORMACE_OUTCOME.FAIL:
-		audience.set_people_state(AudiencePerson.STATE.LAUGHING, 0.3)
+		audience.set_people_state(AudiencePerson.STATE.LAUGHING, 0.2)
 	
 	joystick_controller.is_active = true
 	cutting_label_container.visible = true
@@ -78,8 +84,20 @@ func run_camera_switch(was_good: bool):
 	cutting_label_container.visible = false
 	main_viewport_texture.viewport_path = viewport_crowd
 	
-	# TODO: Calculate score
+	# Calculate score
+	var current_score = score.target_score
+	var audience_image: Image = zoomed_audience_sprite.texture.get_image()
+	for y in range(audience_image.get_size().y):
+		for x in range(audience_image.get_size().x):
+			var color: Color = audience_image.get_pixel(x, y)
+			if last_performance_outcome == PERFORMACE_OUTCOME.SUCCESS && color == Color("24B710"):
+				score.target_score += 0.000003
+			if last_performance_outcome == PERFORMACE_OUTCOME.FAIL && color == Color("B52015"):
+				score.target_score += 0.000003
 	
+	print("Score change:", score.target_score - current_score)
+	
+	# Reset
 	await(get_tree().create_timer(3).timeout)
 	joystick_controller.is_active = true
 	main_viewport_texture.viewport_path = viewport_scene

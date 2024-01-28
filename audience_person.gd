@@ -5,6 +5,8 @@ extends Sprite2D
 @export var texture_neutral: Array[Texture2D]
 @export var texture_laughing: Array[Texture2D]
 
+var a: bool = false
+
 enum STATE {
 	CLAPPING,
 	NEUTRAL,
@@ -14,6 +16,7 @@ enum STATE {
 var state: STATE = STATE.NEUTRAL:
 	set(st):
 		state = st
+		$Area2D.position += Vector2(0.1, 0.1)
 		match st:
 			STATE.CLAPPING:
 				clap_face()

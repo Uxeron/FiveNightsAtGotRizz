@@ -1,3 +1,4 @@
+class_name Score
 extends Control
 
 @export var progress_viewers: ProgressBar
@@ -13,10 +14,10 @@ extends Control
 var color_good: Color = Color("27AE60")
 var color_bad: Color = Color("C0392B")
 
-var current_score: float = 0.1
+var current_score: float = 0.8
 var target_score: float = 0.8
 var score_change_rate: float = 0.2
-var score_fall_rate: float = 0.05
+var score_fall_rate: float = 0.02
 var noise_target: int = 0
 var noise_image: Image
 var is_fancy_text: bool = false

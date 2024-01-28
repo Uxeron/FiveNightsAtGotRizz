@@ -19,7 +19,7 @@ vec3 hsv2rgb(vec3 c) {
 void fragment() {
 	vec3 hsv = rgb2hsv(vec3(1.0, 0.0, 0.0));
 	hsv.x += TIME;
-	hsv.x += UV.y;
+	hsv.x += UV.y + UV.x;
 	COLOR = vec4(hsv2rgb(hsv), 1.0);
 }
 

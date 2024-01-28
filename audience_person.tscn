@@ -57,7 +57,6 @@ texture_laughing = Array[Texture2D]([ExtResource("5_bb713"), ExtResource("6_b1v3
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
 input_pickable = false
-monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
