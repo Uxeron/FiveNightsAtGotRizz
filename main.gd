@@ -12,6 +12,8 @@ extends Node
 
 @export var joystick_controller: JoystickController
 
+@export var audience: Audience
+
 var main_viewport_texture: ViewportTexture
 
 var camera_switch_running: bool = false
@@ -30,6 +32,11 @@ func run_camera_switch(was_good: bool):
 	camera_switch_running = true
 	button_good.disabled = true
 	button_bad.disabled = true
+	
+	if was_good:
+		audience.set_people_state(AudiencePerson.STATE.CLAPPING, 0.3)
+	else:
+		audience.set_people_state(AudiencePerson.STATE.LAUGHING, 0.3)
 	
 	joystick_controller.is_active = true
 	cutting_label_container.visible = true
@@ -55,4 +62,6 @@ func run_camera_switch(was_good: bool):
 	camera_switch_running = false
 	button_good.disabled = false
 	button_bad.disabled = false
+	
+	audience.set_people_state(AudiencePerson.STATE.NEUTRAL, 1.0)
 	

@@ -9,6 +9,7 @@ extends Panel
 @export var drag_area: Area2D
 
 @export var joystick_sprite: Sprite2D
+@export var joystick_shaft: Line2D
 @export var joystick_range: float = 40.0
 @export var camera_speed: float = 600.0
 
@@ -26,6 +27,7 @@ func _ready():
 func _process(delta):
 	# Always reset the simulated joystick position
 	joystick_sprite.position = size / 2.0
+	joystick_sprite.position.y -= 50.0
 	
 	# If mouse was outside the joystick when the button was released,
 	#  the joystick won't get the release event.
@@ -59,3 +61,6 @@ func _process(delta):
 	# Keep camera within the crowd
 	viewport_sprite_crowd.position.x = min(0.0, max(-viewport_crowd_full.size.x + viewport_crowd.size.x, viewport_sprite_crowd.position.x))
 	viewport_sprite_crowd.position.y = min(0.0, max(-viewport_crowd_full.size.y + viewport_crowd.size.y, viewport_sprite_crowd.position.y))
+	
+	joystick_shaft.points[1] = joystick_sprite.position - joystick_shaft.position
+

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://ly1keionwikx"]
+
+[ext_resource type="Texture2D" uid="uid://cmcuk6fys7kq7" path="res://screenshot_audience_hack.png" id="1_86ic1"]
+[ext_resource type="Script" path="res://audience_person.gd" id="2_8id5y"]
+[ext_resource type="Texture2D" uid="uid://y4fsghlolyrr" path="res://screenshot_audience_hack (2).png" id="3_joff1"]
+[ext_resource type="Texture2D" uid="uid://dupfysfky4y53" path="res://screenshot_audience_hack (2) - Copy.png" id="4_rt2rf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rj2xq"]
+radius = 7.25
+
+[node name="AudiencePerson" type="Sprite2D"]
+position = Vector2(45, 40)
+scale = Vector2(4, 4)
+texture = ExtResource("1_86ic1")
+script = ExtResource("2_8id5y")
+texture_clapping = ExtResource("3_joff1")
+texture_neutral = ExtResource("1_86ic1")
+texture_laughing = ExtResource("4_rt2rf")
+
+[node name="Area2D" type="Area2D" parent="."]
+input_pickable = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rj2xq")
