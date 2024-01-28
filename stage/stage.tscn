@@ -33,6 +33,7 @@ scale = Vector2(2.08594, 1.55469)
 texture = ExtResource("4_ph0cc")
 
 [node name="SplashTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="ActTimer" to="." method="_on_act_timer_timeout"]
 [connection signal="timeout" from="SplashTimer" to="." method="_on_splash_timer_timeout"]

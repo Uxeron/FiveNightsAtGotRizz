@@ -42,7 +42,7 @@ func change_act():
 	new_act.emit()
 
 func _on_act_timer_timeout():
-	change_act()
+	do_tv_splash()
 
 func _on_finished_act(succeeded: bool):
 	finished_act.emit(succeeded)
@@ -66,3 +66,4 @@ func do_tv_splash():
 
 func _on_splash_timer_timeout():
 	$ActTimer.set_paused(false)
+	change_act()
