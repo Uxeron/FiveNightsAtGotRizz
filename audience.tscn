@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpxom37l3vbmh"]
 
 [ext_resource type="Script" path="res://audience.gd" id="1_po6xd"]
-[ext_resource type="PackedScene" path="res://audience_person.tscn" id="2_57qsi"]
+[ext_resource type="PackedScene" uid="uid://bbjpvifct6lug" path="res://audience_person.tscn" id="2_57qsi"]
 
 [sub_resource type="Gradient" id="Gradient_it46i"]
 

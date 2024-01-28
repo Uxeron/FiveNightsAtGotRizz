@@ -1,25 +1,90 @@
-[gd_scene load_steps=6 format=3 uid="uid://ly1keionwikx"]
+[gd_scene load_steps=11 format=3 uid="uid://bbjpvifct6lug"]
 
-[ext_resource type="Texture2D" uid="uid://cmcuk6fys7kq7" path="res://screenshot_audience_hack.png" id="1_86ic1"]
 [ext_resource type="Script" path="res://audience_person.gd" id="2_8id5y"]
-[ext_resource type="Texture2D" uid="uid://y4fsghlolyrr" path="res://screenshot_audience_hack (2).png" id="3_joff1"]
-[ext_resource type="Texture2D" uid="uid://dupfysfky4y53" path="res://screenshot_audience_hack (2) - Copy.png" id="4_rt2rf"]
+[ext_resource type="Texture2D" uid="uid://dmdjp6immroft" path="res://audience/face_clap.png" id="3_a5fy5"]
+[ext_resource type="Texture2D" uid="uid://cdo7mat5gdr5a" path="res://audience/face_neutral_0.png" id="4_i3yuk"]
+[ext_resource type="Texture2D" uid="uid://ba6j4d15hdnmr" path="res://audience/face_laugh_0.png" id="5_bb713"]
+[ext_resource type="Texture2D" uid="uid://dxfflpdocsk6d" path="res://audience/face_neutral_1.png" id="5_uy8sk"]
+[ext_resource type="Texture2D" uid="uid://b7b4u7nigcoh7" path="res://audience/face_laugh_1.png" id="6_b1v3f"]
+[ext_resource type="Texture2D" uid="uid://dkowtdbovy4sw" path="res://audience/face_clap_hand.png" id="6_xxsgk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rj2xq"]
 radius = 7.25
 
+[sub_resource type="Animation" id="Animation_i5rwj"]
+resource_name = "clap"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.5, 6), Vector2(-2, 6), Vector2(-0.5, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FaceClapHandRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 6), Vector2(2, 6), Vector2(0.5, 6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rguxx"]
+_data = {
+"clap": SubResource("Animation_i5rwj")
+}
+
 [node name="AudiencePerson" type="Sprite2D"]
 position = Vector2(45, 40)
 scale = Vector2(4, 4)
-texture = ExtResource("1_86ic1")
+texture = ExtResource("3_a5fy5")
 script = ExtResource("2_8id5y")
-texture_clapping = ExtResource("3_joff1")
-texture_neutral = ExtResource("1_86ic1")
-texture_laughing = ExtResource("4_rt2rf")
+texture_clapping = ExtResource("3_a5fy5")
+texture_neutral = Array[Texture2D]([ExtResource("4_i3yuk"), ExtResource("5_uy8sk")])
+texture_laughing = Array[Texture2D]([ExtResource("5_bb713"), ExtResource("6_b1v3f")])
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 input_pickable = false
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("CircleShape2D_rj2xq")
+
+[node name="FaceAnimTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="FaceClapHandLeft" type="Sprite2D" parent="."]
+position = Vector2(-0.5, 6)
+scale = Vector2(1, 5.75)
+texture = ExtResource("6_xxsgk")
+
+[node name="FaceClapHandRight" type="Sprite2D" parent="."]
+position = Vector2(0.5, 6)
+scale = Vector2(1, 5.75)
+texture = ExtResource("6_xxsgk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../FaceClapHandLeft")
+libraries = {
+"": SubResource("AnimationLibrary_rguxx")
+}
+
+[node name="LaughTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="FaceAnimTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LaughTimer" to="." method="_on_laugh_timer_timeout"]
