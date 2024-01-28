@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddgbmkobsytu1"]
+[gd_scene load_steps=12 format=3 uid="uid://ddgbmkobsytu1"]
 
 [ext_resource type="Texture2D" uid="uid://cv48siu5ewcp2" path="res://stage/acts/juggling/man_juggle_0.png" id="1_l0ob0"]
 [ext_resource type="Script" path="res://stage/acts/juggling/juggling_act.gd" id="1_vnkn6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3h372gt17230" path="res://stage/acts/juggling/man_juggle_end.png" id="5_daenk"]
 [ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="7_p5j07"]
 [ext_resource type="Texture2D" uid="uid://ppvmatolcx38" path="res://stage/stage.png" id="8_l6oia"]
+[ext_resource type="AudioStream" uid="uid://bbidce88sxx45" path="res://audio/music/happy-rock-165132.mp3" id="9_dc67s"]
 
 [sub_resource type="Curve2D" id="Curve2D_5tany"]
 _data = {
@@ -54,5 +55,9 @@ autostart = true
 z_index = -10
 position = Vector2(146, 115)
 texture = ExtResource("8_l6oia")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_dc67s")
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

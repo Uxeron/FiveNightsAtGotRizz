@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmqdqj1n4ffr1"]
+[gd_scene load_steps=12 format=3 uid="uid://cmqdqj1n4ffr1"]
 
 [ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="1_16pbv"]
 [ext_resource type="Texture2D" uid="uid://ppvmatolcx38" path="res://stage/stage.png" id="1_kp7kt"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dqwkow7ogaq70" path="res://stage/acts/trampoline/man_trampoline_spin.png" id="3_n72n5"]
 [ext_resource type="Script" path="res://stage/acts/trampoline/ManTrampolineSpin.gd" id="5_tm378"]
 [ext_resource type="Texture2D" uid="uid://cmnr60kvci7hu" path="res://stage/acts/trampoline/man_trampoline_finish.png" id="6_t02mw"]
+[ext_resource type="AudioStream" uid="uid://b35kud0p0pawi" path="res://audio/music/upbeat-energetic-rock-186788.mp3" id="8_qqn13"]
 
 [sub_resource type="Curve2D" id="Curve2D_d5nv1"]
 _data = {
@@ -75,5 +76,9 @@ shape = SubResource("WorldBoundaryShape2D_rd0wi")
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_qqn13")
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
