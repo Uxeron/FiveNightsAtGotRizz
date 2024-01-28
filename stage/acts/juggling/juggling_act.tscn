@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddgbmkobsytu1"]
+[gd_scene load_steps=14 format=3 uid="uid://ddgbmkobsytu1"]
 
 [ext_resource type="Texture2D" uid="uid://cv48siu5ewcp2" path="res://stage/acts/juggling/man_juggle_0.png" id="1_l0ob0"]
 [ext_resource type="Script" path="res://stage/acts/juggling/juggling_act.gd" id="1_vnkn6"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="7_p5j07"]
 [ext_resource type="Texture2D" uid="uid://ppvmatolcx38" path="res://stage/stage.png" id="8_l6oia"]
 [ext_resource type="AudioStream" uid="uid://bbidce88sxx45" path="res://audio/music/happy-rock-165132.mp3" id="9_dc67s"]
+[ext_resource type="AudioStream" uid="uid://n3o786ks1g1g" path="res://audio/failure-drum-sound-effect-2-7184.mp3" id="10_w5sk1"]
+[ext_resource type="AudioStream" uid="uid://cbfp8h6sfqgqb" path="res://audio/success-1-6297.mp3" id="11_81jtg"]
 
 [sub_resource type="Curve2D" id="Curve2D_5tany"]
 _data = {
@@ -47,7 +49,7 @@ position = Vector2(134, 148)
 shape = SubResource("WorldBoundaryShape2D_u36c5")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 7.0
 one_shot = true
 autostart = true
 
@@ -59,5 +61,11 @@ texture = ExtResource("8_l6oia")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_dc67s")
 autoplay = true
+
+[node name="FailAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_w5sk1")
+
+[node name="YesAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_81jtg")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

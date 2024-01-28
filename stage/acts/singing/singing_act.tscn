@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dv620fhfebm6k"]
+[gd_scene load_steps=13 format=3 uid="uid://dv620fhfebm6k"]
 
 [ext_resource type="Script" path="res://stage/acts/singing/singing_act.gd" id="1_q8v72"]
 [ext_resource type="Texture2D" uid="uid://bhvtc8v1s42qy" path="res://stage/acts/singing/man_singing_0.png" id="1_vkkvw"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cfvimwb8637o7" path="res://stage/acts/singing/notes_golden.png" id="6_b10uj"]
 [ext_resource type="Texture2D" uid="uid://ppvmatolcx38" path="res://stage/stage.png" id="7_8svh4"]
 [ext_resource type="AudioStream" uid="uid://32arqnj3jxaf" path="res://audio/music/upbeat-indie-folk-60s-13449.mp3" id="9_ibp5a"]
+[ext_resource type="AudioStream" uid="uid://n3o786ks1g1g" path="res://audio/failure-drum-sound-effect-2-7184.mp3" id="10_mb1ui"]
+[ext_resource type="AudioStream" uid="uid://cbfp8h6sfqgqb" path="res://audio/success-1-6297.mp3" id="11_wtj6y"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4qvig"]
 particle_flag_disable_z = true
@@ -58,7 +60,7 @@ lifetime = 5.0
 local_coords = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 7.0
 one_shot = true
 autostart = true
 
@@ -76,5 +78,11 @@ texture = ExtResource("2_84eqq")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_ibp5a")
 autoplay = true
+
+[node name="FailAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_mb1ui")
+
+[node name="YesAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_wtj6y")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://08wpoaia56e1"]
+[gd_scene load_steps=11 format=3 uid="uid://08wpoaia56e1"]
 
 [ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="1_8ic3t"]
 [ext_resource type="Script" path="res://stage/acts/dancing/dancing_act.gd" id="1_tplqw"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cawvntyq6srgr" path="res://stage/acts/dancing/man_win.png" id="4_sc6qo"]
 [ext_resource type="Texture2D" uid="uid://e2qmt61yumuf" path="res://stage/acts/dancing/fall_guy.png" id="5_6u7ho"]
 [ext_resource type="AudioStream" uid="uid://b0p4q2orvuf8t" path="res://audio/music/fashion-upbeat-electronica-117535.mp3" id="8_an5xw"]
+[ext_resource type="AudioStream" uid="uid://n3o786ks1g1g" path="res://audio/failure-drum-sound-effect-2-7184.mp3" id="9_yf0pg"]
+[ext_resource type="AudioStream" uid="uid://cbfp8h6sfqgqb" path="res://audio/success-1-6297.mp3" id="10_udf6i"]
 
 [node name="DancingAct" type="Node2D" node_paths=PackedStringArray("dancers")]
 script = ExtResource("1_tplqw")
@@ -54,13 +56,19 @@ autostart = true
 autostart = true
 
 [node name="EndTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 7.0
 one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_an5xw")
 autoplay = true
+
+[node name="FailAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_yf0pg")
+
+[node name="YesAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_udf6i")
 
 [connection signal="timeout" from="Shaking" to="." method="_on_shaking_timeout"]
 [connection signal="timeout" from="TextureChange" to="." method="_on_texture_change_timeout"]

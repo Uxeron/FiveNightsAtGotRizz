@@ -6,6 +6,8 @@ func _on_timer_timeout():
 	if randf() > 0.5:
 		$juggler.success()
 		finished_act.emit(true)
+		$YesAudio.play()
 	else:
 		$juggler.lose_balls()
 		finished_act.emit(false)
+		$FailAudio.play()

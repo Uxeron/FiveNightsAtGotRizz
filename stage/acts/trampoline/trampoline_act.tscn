@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmqdqj1n4ffr1"]
+[gd_scene load_steps=14 format=3 uid="uid://cmqdqj1n4ffr1"]
 
 [ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="1_16pbv"]
 [ext_resource type="Texture2D" uid="uid://ppvmatolcx38" path="res://stage/stage.png" id="1_kp7kt"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://stage/acts/trampoline/ManTrampolineSpin.gd" id="5_tm378"]
 [ext_resource type="Texture2D" uid="uid://cmnr60kvci7hu" path="res://stage/acts/trampoline/man_trampoline_finish.png" id="6_t02mw"]
 [ext_resource type="AudioStream" uid="uid://b35kud0p0pawi" path="res://audio/music/upbeat-energetic-rock-186788.mp3" id="8_qqn13"]
+[ext_resource type="AudioStream" uid="uid://n3o786ks1g1g" path="res://audio/failure-drum-sound-effect-2-7184.mp3" id="9_81aqs"]
+[ext_resource type="AudioStream" uid="uid://cbfp8h6sfqgqb" path="res://audio/success-1-6297.mp3" id="10_quoni"]
 
 [sub_resource type="Curve2D" id="Curve2D_d5nv1"]
 _data = {
@@ -73,12 +75,18 @@ position = Vector2(129, 176)
 shape = SubResource("WorldBoundaryShape2D_rd0wi")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 7.0
 one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_qqn13")
 autoplay = true
+
+[node name="FailAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_81aqs")
+
+[node name="YesAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_quoni")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

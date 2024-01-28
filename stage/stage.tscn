@@ -18,7 +18,7 @@ acts = Array[PackedScene]([ExtResource("1_jms7e"), ExtResource("3_7782i"), ExtRe
 tv_splash = ExtResource("6_umcdc")
 
 [node name="ActTimer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 autostart = true
 
 [node name="Icon" type="Sprite2D" parent="."]

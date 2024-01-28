@@ -51,6 +51,8 @@ func _on_end_timer_timeout():
 	if randf() > 0.5:
 		win()
 		finished_act.emit(true)
+		$YesAudio.play()
 	else:
 		lose()
 		finished_act.emit(false)
+		$FailAudio.play()
