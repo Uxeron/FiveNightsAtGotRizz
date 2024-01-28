@@ -14,15 +14,35 @@ extends Node
 
 @export var audience: Audience
 
+@export var stage: Stage
+
 var main_viewport_texture: ViewportTexture
 
 var camera_switch_running: bool = false
+
+enum PERFORMACE_OUTCOME {
+	SUCCESS,
+	FAIL,
+	NONE
+}
+
+var last_performance_outcome: PERFORMACE_OUTCOME = PERFORMACE_OUTCOME.NONE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	main_viewport_texture = viewport_main_texture_rect.texture
 	button_good.pressed.connect(func(): run_camera_switch(true))
 	button_bad.pressed.connect(func(): run_camera_switch(false))
+	stage.finished_act.connect(func(succeeded: bool): 
+		last_performance_outcome = PERFORMACE_OUTCOME.SUCCESS if succeeded else PERFORMACE_OUTCOME.FAIL)
+	
+	stage.finished_act.connect(func(succeeded: bool):
+		audience.set_people_state(AudiencePerson.STATE.CLAPPING, 0.05) \
+		if succeeded else \
+		audience.set_people_state(AudiencePerson.STATE.LAUGHING, 0.05))
+	
+	stage.new_act.connect(func(): last_performance_outcome = PERFORMACE_OUTCOME.NONE)
+	stage.new_act.connect(func(): audience.set_people_state(AudiencePerson.STATE.NEUTRAL, 1.0))
 
 
 func run_camera_switch(was_good: bool):
@@ -33,9 +53,11 @@ func run_camera_switch(was_good: bool):
 	button_good.disabled = true
 	button_bad.disabled = true
 	
-	if was_good:
+	stage.freeze_act()
+	
+	if was_good and last_performance_outcome == PERFORMACE_OUTCOME.SUCCESS:
 		audience.set_people_state(AudiencePerson.STATE.CLAPPING, 0.3)
-	else:
+	if not was_good and last_performance_outcome == PERFORMACE_OUTCOME.FAIL:
 		audience.set_people_state(AudiencePerson.STATE.LAUGHING, 0.3)
 	
 	joystick_controller.is_active = true
@@ -55,13 +77,13 @@ func run_camera_switch(was_good: bool):
 	
 	# TODO: Calculate score
 	
-	await(get_tree().create_timer(5).timeout)
+	await(get_tree().create_timer(3).timeout)
 	joystick_controller.is_active = true
 	main_viewport_texture.viewport_path = viewport_scene
 	
 	camera_switch_running = false
 	button_good.disabled = false
 	button_bad.disabled = false
-	
-	audience.set_people_state(AudiencePerson.STATE.NEUTRAL, 1.0)
+
+	stage.do_tv_splash()
 	

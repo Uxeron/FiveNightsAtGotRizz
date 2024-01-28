@@ -1,8 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccwdc6bvs0q7i"]
+[gd_scene load_steps=21 format=3 uid="uid://ccwdc6bvs0q7i"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7a8x5"]
-[ext_resource type="Shader" path="res://colorize.gdshader" id="1_m15ij"]
-[ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="2_r260o"]
 [ext_resource type="FontFile" uid="uid://c77ts4ssd7kr4" path="res://LcdSolid-VPzB.ttf" id="3_1fahk"]
 [ext_resource type="PackedScene" uid="uid://dpxom37l3vbmh" path="res://audience.tscn" id="4_smohu"]
 [ext_resource type="PackedScene" uid="uid://dthhca7u4erg8" path="res://stage/stage.tscn" id="5_edkph"]
@@ -19,10 +17,6 @@ viewport_path = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxCon
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nx0gh"]
 viewport_path = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_osr2v"]
-shader = ExtResource("1_m15ij")
-shader_parameter/color = Color(0.0509804, 0.678431, 0.184314, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6rjk"]
 border_width_left = 20
@@ -54,7 +48,7 @@ size = Vector2(38, 38)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ytmi"]
 bg_color = Color(0.0470588, 0.356863, 0.0588235, 1)
 
-[node name="Main" type="Node" node_paths=PackedStringArray("button_good", "button_bad", "viewport_main_texture_rect", "cutting_label", "cutting_label_container", "joystick_controller", "audience")]
+[node name="Main" type="Node" node_paths=PackedStringArray("button_good", "button_bad", "viewport_main_texture_rect", "cutting_label", "cutting_label_container", "joystick_controller", "audience", "stage")]
 script = ExtResource("1_7a8x5")
 button_good = NodePath("PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/ButtonGood")
 button_bad = NodePath("PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/ButtonBad")
@@ -65,6 +59,7 @@ cutting_label = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxCon
 cutting_label_container = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/CenterContainer/HBoxContainer/PanelContainer")
 joystick_controller = NodePath("PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/JoystickPanel")
 audience = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull/Audience")
+stage = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene/Stage2")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 15
@@ -127,7 +122,7 @@ render_target_update_mode = 4
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1fahk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_okort")
-text = "Cam1"
+text = "Cam1 audience"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -153,7 +148,7 @@ centered = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1fahk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_okort")
-text = "Cam2"
+text = "Cam2 zoom"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -184,19 +179,13 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(267, 198)
 render_target_update_mode = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene"]
-visible = false
-material = SubResource("ShaderMaterial_osr2v")
-texture = ExtResource("2_r260o")
-centered = false
-
 [node name="Stage2" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene" instance=ExtResource("5_edkph")]
 
 [node name="LabelCam3" type="Label" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1fahk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_okort")
-text = "Cam3"
+text = "Cam3 stage"
 
 [node name="VBoxContainer" type="VSplitContainer" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
