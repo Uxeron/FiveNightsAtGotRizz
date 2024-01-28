@@ -1,11 +1,12 @@
 extends Node2D
 
 @export var acts: Array[PackedScene]
+@export var tv_splash: PackedScene
 
 var current_act: Node2D
 
 signal finished_act(succeeded: bool)
-
+signal new_act()
 
 var act_frozen := false
 
@@ -33,13 +34,14 @@ func change_act():
 	
 	current_act.finished_act.connect(_on_finished_act)
 	
-	if $Timer.is_stopped():
-		$Timer.start()
+	if $ActTimer.is_stopped():
+		$ActTimer.start()
 	
 	act_frozen = false
+	
+	new_act.emit()
 
-
-func _on_timer_timeout():
+func _on_act_timer_timeout():
 	change_act()
 
 func _on_finished_act(succeeded: bool):
@@ -48,4 +50,19 @@ func _on_finished_act(succeeded: bool):
 func freeze_act():
 	act_frozen= true
 	
-	$Timer.stop()
+	$ActTimer.stop()
+
+
+func do_tv_splash():
+	$ActTimer.set_paused(true)
+	
+	if current_act != null:
+		current_act.queue_free()
+	
+	current_act = tv_splash.instantiate()
+	add_child(current_act)
+	
+	$SplashTimer.start()
+
+func _on_splash_timer_timeout():
+	$ActTimer.set_paused(false)

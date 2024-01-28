@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkwvpynqdim0a"]
+
+[ext_resource type="Texture2D" uid="uid://debaw37pqm57g" path="res://logo.png" id="1_pv248"]
+[ext_resource type="Shader" path="res://score/score_rainbow.gdshader" id="2_oswwe"]
+[ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="3_61ef5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hrhqy"]
+shader = ExtResource("2_oswwe")
+
+[node name="TvSplash" type="Node2D"]
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(134, 89)
+scale = Vector2(5, 5)
+texture = ExtResource("1_pv248")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_hrhqy")
+position = Vector2(133.5, 99.5)
+scale = Vector2(2.08594, 1.55469)
+texture = ExtResource("3_61ef5")
