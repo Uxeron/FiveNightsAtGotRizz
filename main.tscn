@@ -1,8 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://ccwdc6bvs0q7i"]
+[gd_scene load_steps=21 format=3 uid="uid://ccwdc6bvs0q7i"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7a8x5"]
-[ext_resource type="Shader" path="res://colorize.gdshader" id="1_m15ij"]
-[ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="2_r260o"]
 [ext_resource type="FontFile" uid="uid://c77ts4ssd7kr4" path="res://LcdSolid-VPzB.ttf" id="3_1fahk"]
 [ext_resource type="PackedScene" uid="uid://dpxom37l3vbmh" path="res://audience.tscn" id="4_smohu"]
 [ext_resource type="PackedScene" uid="uid://dthhca7u4erg8" path="res://stage/stage.tscn" id="5_edkph"]
@@ -15,34 +13,10 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_h6vfq"]
 viewport_path = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_11yrb"]
-shader = ExtResource("1_m15ij")
-shader_parameter/color = Color(0.678431, 0.0705882, 0.0352941, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_an8gh"]
-shader = ExtResource("1_m15ij")
-shader_parameter/color = Color(0.619608, 0.133333, 0.678431, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnarn"]
-shader = ExtResource("1_m15ij")
-shader_parameter/color = Color(0.105882, 0.0509804, 0.678431, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_06qai"]
-shader = ExtResource("1_m15ij")
-shader_parameter/color = Color(0.643137, 0.678431, 0.27451, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4k63"]
-shader = ExtResource("1_m15ij")
-shader_parameter/color = Color(0.239216, 0.678431, 0.380392, 0)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okort"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nx0gh"]
 viewport_path = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_osr2v"]
-shader = ExtResource("1_m15ij")
-shader_parameter/color = Color(0.0509804, 0.678431, 0.184314, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6rjk"]
 border_width_left = 20
@@ -74,7 +48,7 @@ size = Vector2(38, 38)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ytmi"]
 bg_color = Color(0.0470588, 0.356863, 0.0588235, 1)
 
-[node name="Main" type="Node" node_paths=PackedStringArray("button_good", "button_bad", "viewport_main_texture_rect", "cutting_label", "cutting_label_container", "joystick_controller")]
+[node name="Main" type="Node" node_paths=PackedStringArray("button_good", "button_bad", "viewport_main_texture_rect", "cutting_label", "cutting_label_container", "joystick_controller", "audience", "stage")]
 script = ExtResource("1_7a8x5")
 button_good = NodePath("PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/ButtonGood")
 button_bad = NodePath("PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/ButtonBad")
@@ -84,6 +58,8 @@ viewport_scene = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxCo
 cutting_label = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/CenterContainer/HBoxContainer/PanelContainer/RichTextLabel")
 cutting_label_container = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/CenterContainer/HBoxContainer/PanelContainer")
 joystick_controller = NodePath("PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/JoystickPanel")
+audience = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull/Audience")
+stage = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene/Stage2")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 15
@@ -140,47 +116,13 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(1068, 792)
 render_target_update_mode = 4
 
-[node name="TextureRect" type="Sprite2D" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull"]
-visible = false
-material = SubResource("ShaderMaterial_11yrb")
-texture = ExtResource("2_r260o")
-centered = false
-
-[node name="TextureRect2" type="Sprite2D" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull"]
-visible = false
-material = SubResource("ShaderMaterial_an8gh")
-position = Vector2(400, 400)
-texture = ExtResource("2_r260o")
-centered = false
-
-[node name="TextureRect3" type="Sprite2D" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull"]
-visible = false
-material = SubResource("ShaderMaterial_vnarn")
-position = Vector2(800, 600)
-texture = ExtResource("2_r260o")
-centered = false
-
-[node name="TextureRect4" type="Sprite2D" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull"]
-visible = false
-material = SubResource("ShaderMaterial_06qai")
-position = Vector2(200, 200)
-texture = ExtResource("2_r260o")
-centered = false
-
-[node name="TextureRect5" type="Sprite2D" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull"]
-visible = false
-material = SubResource("ShaderMaterial_i4k63")
-position = Vector2(400, 0)
-texture = ExtResource("2_r260o")
-centered = false
-
 [node name="Audience" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull" instance=ExtResource("4_smohu")]
 
 [node name="LabelCam1" type="Label" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1fahk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_okort")
-text = "Cam1"
+text = "Cam1 audience"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -206,7 +148,7 @@ centered = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1fahk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_okort")
-text = "Cam2"
+text = "Cam2 zoom"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -215,7 +157,6 @@ size_flags_vertical = 3
 
 [node name="Score" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer3" instance=ExtResource("5_fhay8")]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="LabelGraphs" type="Label" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer3"]
 layout_mode = 2
@@ -238,19 +179,13 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(267, 198)
 render_target_update_mode = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene"]
-visible = false
-material = SubResource("ShaderMaterial_osr2v")
-texture = ExtResource("2_r260o")
-centered = false
-
 [node name="Stage2" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene" instance=ExtResource("5_edkph")]
 
 [node name="LabelCam3" type="Label" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1fahk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_okort")
-text = "Cam3"
+text = "Cam3 stage"
 
 [node name="VBoxContainer" type="VSplitContainer" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -343,7 +278,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_hmaep")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hmaep")
 text = "Laugh"
 
-[node name="JoystickPanel" type="Panel" parent="PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("viewport_crowd_full", "viewport_crowd", "viewport_sprite_crowd", "drag_area", "joystick_sprite")]
+[node name="JoystickPanel" type="Panel" parent="PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("viewport_crowd_full", "viewport_crowd", "viewport_sprite_crowd", "drag_area", "joystick_sprite", "joystick_shaft")]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -353,11 +288,20 @@ viewport_crowd = NodePath("../../../../MarginContainer/HBoxContainer/MarginConta
 viewport_sprite_crowd = NodePath("../../../../MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer2/SubViewportContainer/SubViewportCrowd/Sprite2D")
 drag_area = NodePath("JoystickSprite/JoystickDragArea")
 joystick_sprite = NodePath("JoystickSprite")
+joystick_shaft = NodePath("Line2D")
 
 [node name="JoystickBase" type="Sprite2D" parent="PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/JoystickPanel"]
 position = Vector2(128, 79.0001)
 scale = Vector2(1.17188, 1.17188)
 texture = ExtResource("10_xjll2")
+
+[node name="Line2D" type="Line2D" parent="PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/JoystickPanel"]
+position = Vector2(128, 79)
+points = PackedVector2Array(0, 0, 0, -30)
+width = 25.0
+default_color = Color(0.164706, 0.164706, 0.164706, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="JoystickSprite" type="Sprite2D" parent="PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/JoystickPanel"]
 position = Vector2(128, 79)

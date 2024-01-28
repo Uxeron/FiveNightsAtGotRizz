@@ -1,23 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://df4j3v4p77mqo"]
+[gd_scene load_steps=8 format=3 uid="uid://df4j3v4p77mqo"]
 
+[ext_resource type="Script" path="res://score/score.gd" id="1_hxesb"]
 [ext_resource type="FontFile" uid="uid://c77ts4ssd7kr4" path="res://LcdSolid-VPzB.ttf" id="1_xfb7y"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ww260"]
+seed = 100
+frequency = 0.0047
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g71h6"]
+height = 1
+seamless = true
+noise = SubResource("FastNoiseLite_ww260")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euios"]
-bg_color = Color(0.45098, 0.6, 0.239216, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjcji"]
-bg_color = Color(0.105882, 0.768627, 0.133333, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljjqs"]
-bg_color = Color(0.0823529, 0.6, 0.137255, 1)
 
-[node name="Score" type="Control"]
+[node name="Score" type="Control" node_paths=PackedStringArray("progress_viewers", "progress_ratings", "progress_engagement", "text_viewers", "text_ratings", "text_engagement")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_hxesb")
+progress_viewers = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ProgressBar")
+progress_ratings = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ProgressBar2")
+progress_engagement = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ProgressBar3")
+text_viewers = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/RichTextLabel")
+text_ratings = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/RichTextLabel2")
+text_engagement = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/RichTextLabel3")
+noise = SubResource("NoiseTexture2D_g71h6")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -28,23 +45,61 @@ offset_bottom = 199.0
 layout_mode = 0
 offset_right = 267.0
 offset_bottom = 199.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_styles/fill = SubResource("StyleBoxFlat_euios")
+step = 1.0
 value = 75.0
+rounded = true
 fill_mode = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ProgressBar2" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_rjcji")
+step = 1.0
+value = 82.0
+rounded = true
+fill_mode = 3
+
+[node name="ProgressBar3" type="ProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_ljjqs")
+step = 1.0
+value = 78.0
+rounded = true
+fill_mode = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_fonts/bold_font = ExtResource("1_xfb7y")
 theme_override_font_sizes/bold_font_size = 13
 bbcode_enabled = true
@@ -52,38 +107,18 @@ text = "[center][b]Viewers"
 fit_content = true
 shortcut_keys_enabled = false
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/fill = SubResource("StyleBoxFlat_rjcji")
-value = 82.0
-fill_mode = 3
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
 theme_override_fonts/bold_font = ExtResource("1_xfb7y")
 theme_override_font_sizes/bold_font_size = 13
 bbcode_enabled = true
 text = "[center][b]Ratings"
 fit_content = true
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/fill = SubResource("StyleBoxFlat_ljjqs")
-value = 78.0
-fill_mode = 3
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
 theme_override_fonts/bold_font = ExtResource("1_xfb7y")
 theme_override_font_sizes/bold_font_size = 13
 bbcode_enabled = true
