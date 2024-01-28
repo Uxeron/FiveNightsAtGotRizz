@@ -12,11 +12,18 @@ var game: Node = preload("res://main.tscn").instantiate()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SolanaService.wallet.connect("on_logged_in",confirm_login)
+	game.get_child(1).menu = self
 	
-	button_start.pressed.connect(func(): add_sibling(game); self.queue_free())
+	button_start.pressed.connect(func(): start_game())
 	button_login.pressed.connect(func(): SolanaService.wallet.try_login())
 	button_credits.pressed.connect(func(): pass)
 	button_quit.pressed.connect(func(): get_tree().quit())
+
+func start_game():
+	game = preload("res://main.tscn").instantiate()
+	game.get_child(1).menu = self
+	add_sibling(game)
+	get_parent().remove_child(self)
 
 func confirm_login(login_success:bool) -> void:
 	if login_success:

@@ -1,6 +1,8 @@
 class_name Score
 extends Control
 
+signal score_0
+
 @export var progress_viewers: ProgressBar
 @export var progress_ratings: ProgressBar
 @export var progress_engagement: ProgressBar
@@ -35,6 +37,9 @@ func _process(delta):
 		return
 	
 	target_score -= score_fall_rate * delta
+	
+	if target_score <= 0.0:
+		score_0.emit()
 	
 	var score_change_raw: float = target_score - current_score
 	if score_change_raw > 0.2:

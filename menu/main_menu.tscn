@@ -29,7 +29,7 @@ _data = {
 "Swinging": SubResource("Animation_t2wwt")
 }
 
-[node name="MainMenu" type="Panel" node_paths=PackedStringArray("button_start", "button_login", "button_credits", "button_quit")]
+[node name="MainMenu" type="Panel" node_paths=PackedStringArray("button_start", "button_login", "button_credits", "button_quit", "label_address")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,6 +42,7 @@ button_start = NodePath("CenterContainer/VBoxContainer/Start")
 button_login = NodePath("CenterContainer/VBoxContainer/Login")
 button_credits = NodePath("CenterContainer/VBoxContainer/Credits")
 button_quit = NodePath("CenterContainer/VBoxContainer/Quit")
+label_address = NodePath("LabelAddress")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
