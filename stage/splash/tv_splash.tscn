@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkwvpynqdim0a"]
+[gd_scene load_steps=6 format=3 uid="uid://bkwvpynqdim0a"]
 
 [ext_resource type="Texture2D" uid="uid://debaw37pqm57g" path="res://logo.png" id="1_pv248"]
 [ext_resource type="Shader" path="res://score/score_rainbow.gdshader" id="2_oswwe"]
 [ext_resource type="Texture2D" uid="uid://b5a35ouk2i6w5" path="res://icon.svg" id="3_61ef5"]
+[ext_resource type="AudioStream" uid="uid://bhrvu14qh0jq6" path="res://audio/reveal-21446.mp3" id="4_wqdvx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hrhqy"]
 shader = ExtResource("2_oswwe")
@@ -20,3 +21,7 @@ material = SubResource("ShaderMaterial_hrhqy")
 position = Vector2(133.5, 99.5)
 scale = Vector2(2.08594, 1.55469)
 texture = ExtResource("3_61ef5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wqdvx")
+autoplay = true

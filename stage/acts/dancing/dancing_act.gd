@@ -49,7 +49,7 @@ func lose():
 
 func _on_end_timer_timeout():
 	if randf() > 0.5:
-		lose()
+		win()
 		finished_act.emit(true)
 	else:
 		lose()

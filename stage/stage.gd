@@ -40,7 +40,7 @@ func change_act():
 	
 	act_frozen = false
 	
-	new_act.emit()
+	#new_act.emit()
 
 func _on_act_timer_timeout():
 	do_tv_splash()
@@ -64,6 +64,7 @@ func do_tv_splash():
 	add_child(current_act)
 	
 	$SplashTimer.start()
+	new_act.emit()
 
 func _on_splash_timer_timeout():
 	$ActTimer.set_paused(false)
