@@ -24,7 +24,13 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta):	
+	# Always reset the simulated joystick position
+	joystick_sprite.position = size / 2.0
+	joystick_sprite.position.y -= 50.0
+	
+	joystick_shaft.points[1] = Vector2(0, -30)
+	
 	# If mouse was outside the joystick when the button was released,
 	#  the joystick won't get the release event.
 	# This is a failsafe to make sure we don't keep dragging it.
@@ -33,10 +39,6 @@ func _process(delta):
 	
 	if not is_active:
 		return
-	
-	# Always reset the simulated joystick position
-	joystick_sprite.position = size / 2.0
-	joystick_sprite.position.y -= 50.0
 
 	var motion_vector: Vector2 = Vector2.ZERO
 	

@@ -48,11 +48,11 @@ size = Vector2(38, 38)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ytmi"]
 bg_color = Color(0.0470588, 0.356863, 0.0588235, 1)
 
-[node name="Main" type="Node" node_paths=PackedStringArray("button_good", "button_bad", "viewport_main_texture_rect", "cutting_label", "cutting_label_container", "joystick_controller", "audience", "stage")]
+[node name="Main" type="Node" node_paths=PackedStringArray("button_good", "button_bad", "viewport_main_texture_rect", "cutting_label", "cutting_label_container", "joystick_controller", "audience", "stage", "main_screen_label")]
 script = ExtResource("1_7a8x5")
 button_good = NodePath("PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/ButtonGood")
 button_bad = NodePath("PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/ButtonBad")
-viewport_main_texture_rect = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer5/MainPanel/TextureRect")
+viewport_main_texture_rect = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/MainPanel/TextureRect")
 viewport_crowd = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer2/SubViewportContainer/SubViewportCrowd")
 viewport_scene = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene")
 cutting_label = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/CenterContainer/HBoxContainer/PanelContainer/RichTextLabel")
@@ -60,6 +60,7 @@ cutting_label_container = NodePath("PanelContainer/VSplitContainer/MarginContain
 joystick_controller = NodePath("PanelContainer/VSplitContainer/PanelContainer/MarginContainer/HBoxContainer/JoystickPanel")
 audience = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer/TextureRectCrowdFull/SubViewportCrowdFull/Audience")
 stage = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/MarginContainer/GridContainer/VBoxContainer4/SubViewportContainerScene/SubViewportScene/Stage2")
+main_screen_label = NodePath("PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/LabelCam4")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 15
@@ -238,13 +239,23 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 25
 
-[node name="MainPanel" type="PanelContainer" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer5"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer5"]
 layout_mode = 2
+
+[node name="MainPanel" type="PanelContainer" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_efv24")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer5/MainPanel"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer/MainPanel"]
 layout_mode = 2
 texture = SubResource("ViewportTexture_m12o3")
+
+[node name="LabelCam4" type="Label" parent="PanelContainer/VSplitContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1fahk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_okort")
+text = "Cam3 stage"
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VSplitContainer"]
 layout_mode = 2

@@ -16,6 +16,8 @@ extends Node
 
 @export var stage: Stage
 
+@export var main_screen_label: Label
+
 var main_viewport_texture: ViewportTexture
 
 var camera_switch_running: bool = false
@@ -71,6 +73,7 @@ func run_camera_switch(was_good: bool):
 	cutting_label.text = cutting_label.text.substr(0, cutting_label.text.length() - 1) + "1"
 	
 	await(get_tree().create_timer(1).timeout)
+	main_screen_label.text = "Cam2 zoom"
 	joystick_controller.is_active = false
 	cutting_label_container.visible = false
 	main_viewport_texture.viewport_path = viewport_crowd
@@ -81,6 +84,7 @@ func run_camera_switch(was_good: bool):
 	joystick_controller.is_active = true
 	main_viewport_texture.viewport_path = viewport_scene
 	
+	main_screen_label.text = "Cam3 stage"
 	camera_switch_running = false
 	button_good.disabled = false
 	button_bad.disabled = false
