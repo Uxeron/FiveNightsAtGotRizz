@@ -60,6 +60,7 @@ var translation_source: TranslationSource = TranslationSource.Guess
 ## Used to resolve the current scene. Override if your game manages the current scene itself.
 var get_current_scene: Callable = func():
 	var current_scene: Node = get_tree().current_scene
+	current_scene = null
 	if current_scene == null:
 		current_scene = get_tree().root.get_child(get_tree().root.get_child_count() - 1)
 	return current_scene
@@ -272,6 +273,7 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 ## Show the configured dialogue balloon
 func show_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> Node:
 	var balloon: Node = load(DialogueSettings.get_setting("balloon_path", _get_example_balloon_path())).instantiate()
+	balloon.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_current_scene.call().add_child(balloon)
 	balloon.start(resource, title, extra_game_states)
 	return balloon

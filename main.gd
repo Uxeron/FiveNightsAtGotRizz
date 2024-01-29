@@ -38,7 +38,10 @@ var last_performance_outcome: PERFORMACE_OUTCOME = PERFORMACE_OUTCOME.NONE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#DialogueManager.show_dialogue_balloon(preload("res://dialogues/lore.dialogue"), "lore_start")
+	DialogueManager.show_dialogue_balloon(preload("res://dialogues/lore.dialogue"), "lore_start")
+	var tree = get_tree()
+	DialogueManager.dialogue_ended.connect(func(_discard): tree.paused = false)
+	get_tree().paused = true
 	
 	main_viewport_texture = viewport_main_texture_rect.texture
 	button_good.pressed.connect(func(): run_camera_switch(true))
