@@ -29,7 +29,7 @@ _data = {
 "Swinging": SubResource("Animation_t2wwt")
 }
 
-[node name="MainMenu" type="Panel" node_paths=PackedStringArray("button_start", "button_login", "button_credits", "button_quit", "label_address")]
+[node name="MainMenu" type="Panel" node_paths=PackedStringArray("button_start", "button_credits", "button_quit", "label_address")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,7 +39,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_y2e81")
 button_start = NodePath("CenterContainer/VBoxContainer/Start")
-button_login = NodePath("CenterContainer/VBoxContainer/Login")
 button_credits = NodePath("CenterContainer/VBoxContainer/Credits")
 button_quit = NodePath("CenterContainer/VBoxContainer/Quit")
 label_address = NodePath("LabelAddress")
@@ -62,13 +61,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_2l1hj")
 theme_override_font_sizes/font_size = 40
 text = "Start Game"
-
-[node name="Login" type="Button" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_2l1hj")
-theme_override_font_sizes/font_size = 40
-text = "Login
-"
 
 [node name="Credits" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
